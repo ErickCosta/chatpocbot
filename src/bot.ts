@@ -5,22 +5,23 @@ export class EchoBot extends ActivityHandler {
         super();
         // See https://aka.ms/about-bot-activity-message to learn more about the message and other activity types.
         this.onMessage(async (context, next) => {
-            var replyText = `${ context.activity.text }`.toLowerCase();
+            // convert to lower case to capture the variances of user writing
+            const replyText = `${ context.activity.text }`.toLowerCase();
             // await context.sendActivity(MessageFactory.text(replyText, replyText));
             // By calling next() you ensure that the next BotHandler is run.
             console.log(replyText)
             if ((replyText == 'yes') || (replyText == '1')) {
-                replyText = `The options is: ${replyText}`;
-                await context.sendActivity(replyText);
+                const responseText = `The options is: ${replyText}`;
+                await context.sendActivity(responseText);
             }
             
             else if ((replyText == 'no') || (replyText == '2')) {
-                replyText = `The option is: ${replyText}`;
-                await context.sendActivity(replyText);
+                const responseText = `The option is: ${replyText}`;
+                await context.sendActivity(responseText);
             }
             else{
-                replyText = `The option is invalid: ${replyText}`;
-                await context.sendActivity(replyText);
+                const responseText = `The option is invalid: ${replyText}`;
+                await context.sendActivity(responseText);
             }
 
             await next();
